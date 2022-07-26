@@ -30,3 +30,26 @@ class Solution {
     }
 }
 
+//ITERATIVE
+class Solution {
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+        if(root1 == null) return root2;
+        if(root2 == null) return root1;
+        
+        Stack<TreeNode[]> st = new Stack<>();
+        st.push(new TreeNode[]{root1, root2});
+        
+        while(!st.isEmpty()){
+            TreeNode[] curr = st.pop();
+            
+            curr[0].val += curr[1].val;
+            
+            if(curr[0].left == null) curr[0].left = curr[1].left;
+            else if(curr[1].left != null) st.push(new TreeNode[]{curr[0].left, curr[1].left});
+            
+            if(curr[0].right == null) curr[0].right = curr[1].right;
+            else if(curr[1].right != null) st.push(new TreeNode[]{curr[0].right, curr[1].right});
+        }
+        return root1;
+    }
+}
