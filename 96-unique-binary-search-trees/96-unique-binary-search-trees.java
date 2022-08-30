@@ -1,7 +1,8 @@
 class Solution {
 
     public int numTrees(int n) {
-        //use catalan number
+        //use catalan number formula
+        //this is simply catalan number
         int[] cat = new int[n + 1];
         cat[0] = 1;
         cat[1] = 1;
