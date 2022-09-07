@@ -1,0 +1,1 @@
+https://leetcode.com/problems/construct-string-from-binary-tree/discuss/2542555/JAVA-oror-Easy-Solution-oror-100-Faster-Code
