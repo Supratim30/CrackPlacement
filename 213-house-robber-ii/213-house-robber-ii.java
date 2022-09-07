@@ -1,23 +1,26 @@
 class Solution {
     public int rob(int[] nums) {
-        if(nums.length==1) return nums[0];
-        if(nums.length==2) return Math.max(nums[0],nums[1]);
+        int n = nums.length;
+        if(n==1) return nums[0];
         
-        
-        int x = helper(0,nums.length-1,nums);
-        
-        int y = helper(1,nums.length,nums);
-        
-        return Math.max(x,y);
+        return Math.max( helper2(nums,0,n-2), helper2(nums, 1, n-1) );
     }
     
-    private int helper(int start,int end,int[] nums){
-        int[] dp = new int[end];
-        dp[start]=nums[start];
-        dp[start+1] = Math.max(nums[start],nums[start+1]);
-        for(int index=start+2;index<end;index++){
-            dp[index] = Math.max(dp[index-2]+nums[index],dp[index-1]);
+    public int helper2(int[] houses, int start, int end){
+        int prev = houses[start];
+        int prev2 = 0;
+        for(int i=start+1; i<=end; i++){
+
+            int pick = houses[i];
+            if(i>1) pick = pick + prev2;
+            int notPick = prev;
+
+            int currI = Math.max(pick,notPick);
+            
+            prev2 = prev;
+            prev = currI;
         }
-        return dp[dp.length-1];
+        return prev;
     }
+    
 }
