@@ -1,4 +1,5 @@
 class Solution {
+    //memoization
     public int minimumTotal(List<List<Integer>> triangle) {
         int n = triangle.size();
         int m = triangle.get(0).size();
