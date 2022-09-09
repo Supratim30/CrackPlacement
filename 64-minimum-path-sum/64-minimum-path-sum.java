@@ -1,23 +1,29 @@
 class Solution {
-    //memoize
-    int[][] dp;
     public int minPathSum(int[][] grid) {
-        int m = grid.length;
-        int n = grid[0].length;
-        dp = new int[m][n];
+        //tabulation
+        int n = grid.length;
+        int m = grid[0].length;
         
-        for(int[] a: dp) Arrays.fill(a, -1);
-        return helper(m - 1, n - 1, grid);
+        int dp[][]=new int[n][m];
+    
+    for(int i=0; i<n ; i++){
+        for(int j=0; j<m; j++){
+            if(i==0 && j==0) dp[i][j] = grid[i][j];
+            else{
+                
+                int up = grid[i][j];
+                if(i>0) up += dp[i-1][j];
+                else up += (int)Math.pow(10,9);
+                
+                int left = grid[i][j];
+                if(j>0) left+=dp[i][j-1];
+                else left += (int)Math.pow(10,9);
+                
+                dp[i][j] = Math.min(up,left);
+            }
+        }
     }
-    private int helper(int i, int j, int[][] grid){
-        if(i == 0 & j == 0) return grid[0][0];
-        if(i < 0 || j < 0) return (int)Math.pow(10,9);
-        
-        if(dp[i][j] != -1) return dp[i][j];
-        
-        int up = grid[i][j] + helper(i - 1, j, grid);
-        int left = grid[i][j] + helper(i, j - 1, grid);
-        
-        return dp[i][j] = Math.min(up, left);
+    
+    return dp[n-1][m-1];
     }
 }
