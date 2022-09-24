@@ -1,11 +1,22 @@
 class Solution {
 
     public int findTargetSumWays(int[] nums, int target) {
-        return target(nums, target, 0);
+        int ans = allsets(nums, 0, 0, target, 0);
+        return ans;
     }
 
-    private int target(int[] nums, int target, int index) {
-        if (index == nums.length) return target == 0 ? 1 : 0;
-        return target(nums, target + nums[index], index + 1) + target(nums, target - nums[index], index + 1);
+    public static int allsets(int[] nums, int idx, int sum, int target, int count) {
+        if (idx == nums.length) {
+            if (sum == target) {
+                count++;
+            }
+            return count;
+        }
+
+        int ansp = allsets(nums, idx + 1, sum + nums[idx], target, count);
+
+        int ansm = allsets(nums, idx + 1, sum - nums[idx], target, count);
+
+        return ansp + ansm;
     }
 }
