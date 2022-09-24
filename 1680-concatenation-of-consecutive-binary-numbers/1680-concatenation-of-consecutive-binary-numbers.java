@@ -1,16 +1,13 @@
 class Solution {
 
     public int concatenatedBinary(int n) {
-        final long modulo = (long) (1e9 + 7);
-        long res = 0;
-        for (int i = 1; i <= n; i++) {
-            int temp = i;
-            while (temp > 0) {
-                temp /= 2;
-                res *= 2;
-            }
-            res = (res + i) % modulo;
+         long res = 0;
+        int mod = 1_000_000_007;
+        for(int i = 1; i<=n; i++){
+            String binaryString = Integer.toBinaryString(i);
+            res = (res<<binaryString.length())%mod;
+            res = (res+i)%mod;
         }
-        return (int) res;
+        return (int)res;
     }
 }
