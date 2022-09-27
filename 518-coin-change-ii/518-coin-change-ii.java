@@ -6,7 +6,7 @@ class Solution {
         for (int[] a : dp) Arrays.fill(a, -1);
         return helper(n - 1, amount, coins, dp);
     }
-
+//funda is not to update the idx(for take) as there are infinite supply of coins
     private int helper(int idx, int target, int[] coins, int[][] dp) {
         if (idx == 0) return target % coins[0] == 0 ? 1 : 0;
         if (dp[idx][target] != -1) return dp[idx][target];
