@@ -1,4 +1,6 @@
 class Solution {
+    //transform the data
+    //sort the heights based on height[0]
     public List<List<Integer>> getSkyline(int[][] buildings) {
         List<List<Integer>> res = new ArrayList<>();
         List<int[]> heights = new ArrayList<>();
